@@ -1,0 +1,65 @@
+Build a complete Flask web application for a cybersecurity project named 'Project Chimera'. The design must be 'Tactical Minimalist' using a dark mode theme.
+
+1. Visual Style & CSS (Tailwind)
+
+Background: Deep Slate (bg-slate-900 or #0f172a).
+
+Text: Light Grey/Off-white (text-slate-200).
+
+Accents: Neon Emerald Green (#10b981) for buttons, badges, and success states.
+
+Fonts: Use Google Fonts. Import 'Space Mono' for headers (tech feel) and 'Inter' for body text.
+
+Animations: Add a simple CSS fade-in animation for main content containers.
+
+2. Backend (app.py)
+
+Set up a standard Flask structure with the following routes:
+
+@app.route('/'): Renders index.html (Landing Page).
+
+@app.route('/login'): Handles POST requests. Hardcode admin credentials (User: admin, Pass: chimera123). On success, redirect to /admin.
+
+@app.route('/admin'): Renders dashboard.html. Pass a list of dummy user dictionaries to the template. Each user should have: {id, name, device_id, status, risk_level}.
+
+@app.route('/api/approve/<id>', methods=['POST']): API endpoint to update a user's status to 'Active'. Return JSON success.
+
+@app.route('/portal'): Renders portal.html. Protect this route (mock check if logged in).
+
+3. Frontend Templates (templates folder)
+
+A. index.html (Landing Page)
+
+Hero Section: Centered layout. Large 'PROJECT CHIMERA' title in 'Space Mono'.
+
+Badge: A prominent warning badge saying 'RESTRICTED ACCESS // AUTHORIZED PERSONNEL ONLY' styled in red/orange.
+
+Login Form: A sleek, centered card with fields for Officer ID and Password. Green 'Access Headquarters' button.
+
+B. dashboard.html (Admin Dashboard)
+
+Header: 'Chimera HQ' logo on left, 'CMD_OFFICER' user badge on right.
+
+Main Content: A table or list view styled like a terminal interface.
+
+Data: Iterate through the dummy users passed from Flask.
+
+Controls: Each row must have an 'Approve' button (Green outline) and 'Deny' button (Red outline).
+
+JavaScript: Write script to handle the 'Approve' button click. It should call the /api/approve/<id> endpoint using fetch, then visually update the status badge to 'ACTIVE' (Green) without reloading the page.
+
+C. portal.html (Secure Distribution)
+
+Content: A 'Top Secret' file download area.
+
+Visual: A card displaying 'Chimera_v1.0.apk'.
+
+Action: A large, pulsing green 'Download Secure Package' button.
+
+4. Specific Constraints
+
+Do not use a complex database. Use a simple global list variable in app.py to store the dummy users so the state persists while the server is running.
+
+Ensure the Tailwind CDN is included in a base template or all files.
+
+Make it responsive (mobile-friendly).
